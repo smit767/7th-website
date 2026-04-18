@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<body>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #fff;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: black;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ff7a00;
+            transition: 0.3s;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .sub-bar {
+            text-align: center;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        /* ===== DROPDOWN ===== */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown input {
+            display: none;
+        }
+
+        .dropdown label {
+            cursor: pointer;
+            color: black;
+            font-weight: 500;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            background: white;
+            list-style: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px 20px;
+            width: 180px;
+        }
+
+        .dropdown-content li {
+            padding: 8px 0;
+            cursor: pointer;
+        }
+
+        .dropdown-content li:hover {
+            color: #ff7a00;
+        }
+
+        .dropdown input:checked~.dropdown-content {
+            display: block;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            width: 100%;
+            height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: absolute;
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 30px;
+            background-color: #ff7a00;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .hero-content button:hover {
+            background-color: #e96d00;
+        }
+        .hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  background: url('https://wearetto.com/cdn/shop/files/Home_-_Web_Banners-02.jpg?v=1756193124&width=1400') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 20%, transparent 80%);
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  color: white;
+  max-width: 600px;
+  padding: 0 80px;
+}
+
+.hero-content h1 {
+  font-size: 60px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 16px;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+  }
+
+  .hero-content {
+    padding: 0 30px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+}
+ .innovation-section {
+      background-color: #0d0d0d;
+      color: #d6d6d6;
+      text-align: center;
+      padding: 100px 20px;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    .innovation-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 70%);
+      z-index: 0;
+    }
+
+    .innovation-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .innovation-content p {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .innovation-title {
+      font-size: 50px;
+      font-weight: 900;
+      margin-top: 80px;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .innovation-subtitle {
+      margin-top: 10px;
+      color: #ccc;
+      font-size: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .innovation-title {
+        font-size: 36px;
+      }
+      .innovation-content p {
+        font-size: 14px;
+      }
+    }
+     .innovation-lab {
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+
+    .innovation-lab h1 {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .innovation-lab p {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 50px;
+    }
+
+    .lab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      justify-items: center;
+      padding: 0 40px;
+    }
+
+    .lab-card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #222;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .lab-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .lab-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .lab-card .text {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .lab-card .plus {
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .innovation-lab h1 {
+        font-size: 36px;
+      }
+      .lab-card .text {
+        font-size: 16px;
+      }
+    }
+       #innovation-section {
+      background: #0e0d0c;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 60px 80px;
+    }
+
+    .innovation-title {
+      font-weight: 900;
+      font-size: 60px;
+    }
+      #tech-section {
+      background: url("https://media.istockphoto.com/id/1330997419/photo/closeup-beige-knitted-woolen-fabric-background.jpg?s=612x612&w=0&k=20&c=jeC5cpSt-9fVqLq2q6-7t-irnYraxGbCs7yAHaErkmM=") no-repeat center center/cover;
+      padding: 80px 100px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .tech-content {
+      max-width: 600px;
+    }
+
+    .tech-title {
+      font-size: 50px;
+      font-weight: 900;
+      margin-bottom: 30px;
+    }
+
+    .tech-text p {
+      line-height: 1.6;
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 25px;
+      color: #000000;
+    }
+
+    .tech-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      bottom: 40px;
+      left: 100px;
+      right: 100px;
+    }
+
+    .tech-footer div {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 5px;
+      width: 30%;
+    }
+       #quote-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 150px;
+      gap: 60px;
+    }
+
+    .quote-icon {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .quote-icon img {
+      width: 80px;
+      opacity: 0.5;
+    }
+
+    .quote-text {
+      flex: 3;
+    }
+
+    .quote-text blockquote {
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.5;
+      margin: 0;
+      quotes: "“" "”" "‘" "’";
+    }
+
+    .quote-text blockquote::before {
+      content: open-quote;
+      color: transparent;
+    }
+
+    .quote-author {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    .quote-author span {
+      color: #2a2a2a;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      #quote-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 40px;
+      }
+
+      .quote-icon {
+        justify-content: center;
+      }
+
+      .quote-text blockquote {
+        font-size: 18px;
+      }
+    }
+    #about-aretto {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding: 80px 100px;
+      background-color: #000;
+    }
+
+    #about-aretto h2 {
+      font-size: 48px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+
+    #about-aretto p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #b0b0b0;
+      margin-bottom: 25px;
+    }
+
+    .partner-text {
+      margin-top: 30px;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      color: #ddd;
+    }
+
+    .partner-link {
+      display: inline-block;
+      font-size: 18px;
+      margin-top: 10px;
+      color: #4da6ff;
+      text-decoration: none;
+      border-bottom: 1px solid #4da6ff;
+      transition: 0.3s;
+    }
+
+    .partner-link:hover {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+
+    .email {
+      margin-top: 20px;
+      font-size: 15px;
+      color: #bdbdbd;
+    }
+
+    .footer-col h3 {
+      color: #fff;
+      font-size: 18px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #fff;
+    }
+
+    </style>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">aretto</div>
+
+            <ul class="nav-links">
+                <li><a href="#">SHOP ▾</a></li>
+                <li><a href="#">SIZING ▾</a></li>
+
+                <li class="dropdown">
+                    <input type="checkbox" id="menu-toggle" />
+                    <label for="menu-toggle">WHY ARETTO ▾</label>
+                    <ul class="dropdown-content">
+                        <li>Technology</li>
+                        <li><a href="ourstory.html">Our Story</a></li>
+                        <li>Partner with Us</li>
+                        <li>Community</li>
+                    </ul>
+                </li>
+
+                <li><a href="#">RETURN & EXCHANGE ▾</a></li>
+                <li><a href="#">FIND A STORE</a></li>
+                <li><a href="#">CONTACT US</a></li>
+            </ul>
+
+            <div class="icons">
+                <span>🔍</span>
+                <span>👤</span>
+                <span>🛒</span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="sub-bar">⚡ Express Delivery ⚡</div>
+
+    <section class="hero">
+  <div class="overlay">
+    <div class="hero-content">
+      <h1>SUPPORT AT EVERY STEP</h1>
+      <p>FOR UNMATCHED STABILITY, GRIP, AND CONFIDENCE, ACROSS AGES</p>
+      <a href="index.html" class="btn">SHOP NOW</a>
+    </div>
+  </div>
+</section>
+
+
+    
+  <section class="innovation-section">
+    <div class="innovation-content">
+      <p>
+        A mix of science, style, and stubborn curiosity brought us here. We blend form
+        and function to craft footwear that’s advanced yet beautifully simple. Every pair
+        starts with what matters most – healthy feet. Designed to support natural growth,
+        our shoes stay flexible, breathable, and easy to wear.
+      </p>
+      <p>
+        We believe shoes should move with you – and by asking why, we changed how.
+      </p>
+
+      <h1 class="innovation-title">INNOVATION LAB</h1>
+      <p class="innovation-subtitle">Designed for growing feet</p>
+    </div>
+  </section>
+   <section class="innovation-lab">
+    <h1>INNOVATION LAB</h1>
+    <p>Designed for growing feet</p>
+
+    <div class="lab-grid">
+      <div class="lab-card">
+        <img src="https://wearetto.com/cdn/shop/files/Tech_-_Web_Banner-39_1_large.jpg?v=1756220649" alt="Insight Led">
+        <div class="text">INSIGHT LED</div>
+        <div class="plus">+</div>
+      </div>
+
+      <div class="lab-card">
+        <img src="https://wearetto.com/cdn/shop/files/Tech_-_Web_Banner-40_1_large.jpg?v=1756220620" alt="Design Process">
+        <div class="plus">+</div>
+      </div>
+
+      <div class="lab-card">
+        <img src="https://wearetto.com/cdn/shop/files/Tech_-_Web_Banner-41_1_large.jpg?v=1756220648" alt="Functional">
+        <div class="text">FUNCTIONAL</div>
+        <div class="plus">+</div>
+      </div>
+    </div>
+  </section>
+    <section id="innovation-section">
+    <h1 class="innovation-title">ARETTO INNOVATION</h1>
+  </section > 
+   <section id="tech-section">
+    <div class="tech-content">
+      <h1 class="tech-title">INFIKNIT™ TECHNOLOGY</h1>
+      <div class="tech-text">
+        <p><b>What it is:</b> A 3D-knitted upper (50% polyester / 50% spandex), 2.5 mm thin for structure with flex.</p>
+        <p><b>What it does:</b> Multi-directional stretch removes pressure points and adapts as feet grow—a second-skin fit without squeeze.</p>
+        <p><b>Why it matters:</b> Breathable, seamless, low-friction comfort that moves with you.</p>
+      </div>
+    </div>
+
+    <div class="tech-footer">
+      <div id="infiknit">INFIKNIT™</div>
+      <div id="squishyfoam">SQUISHYFOAM™</div>
+      <div id="supergrooves">SUPERGROOVES™</div>
+    </div>
+  </section>
+   <section id="quote-section">
+    <div class="quote-icon">
+      <img src="https://wearetto.com/cdn/shop/files/gray-quote-icon_medium.png?v=1743484726" width="100" alt="quote icon">
+    </div>
+
+    <div class="quote-text">
+      <blockquote>
+        "When we started Aretto, we weren't trying to create another shoe brand.
+        We were trying to solve a fundamental problem – the disconnect between growing feet and static shoes.
+        Our design emerged from questioning conventions and thinking from first principles.
+        The result isn't just a better shoe; it's a completely reimagined approach to what footwear can be for growing feet."
+      </blockquote>
+      <p class="quote-author">
+        — <span>Satyajit Mittal</span>, Founder<br>
+        Founder & CEO
+      </p>
+    </div>
+  </section>
+    <section id="about-aretto">
+    <div class="footer-col">
+      <h2>About Aretto</h2>
+      <p>With imagination, skill, and science we are crafting naturally caring shoes for your kid, that grow as your kids' feet grow.</p>
+      
+      <p class="partner-text">PARTNER WITH US</p>
+      <a href="#" class="partner-link">Link to fill the form - Click Here</a>
+
+      <p class="email">Official Email – partner@wearetto.com</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quicklinks</h3>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Submit a Return / Exchange Request</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Offline Store - Terms & Conditions</a></li>
+        <li><a href="#">Shipping, Exchange & Refund Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Collaborate with Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>Email – support@wearetto.com</li>
+        <li>Contact – +91-9309192340</li>
+        <li>CIN Number – U19119PN2020PTC190137</li>
+        <li>Upper Ground Floor, Clover Hill Plaza, UG-21, NIBM Rd,<br>Kondhwa, Pune, Maharashtra 411048</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Community</h3>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">WhatsApp</a></li>
+      </ul>
+    </div>
+  </section>
+
+
+
+</body>
+</html>

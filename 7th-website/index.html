@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aretto Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #fff;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: black;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ff7a00;
+            transition: 0.3s;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .sub-bar {
+            text-align: center;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        /* ===== DROPDOWN ===== */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown input {
+            display: none;
+        }
+
+        .dropdown label {
+            cursor: pointer;
+            color: black;
+            font-weight: 500;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            background: white;
+            list-style: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px 20px;
+            width: 180px;
+        }
+
+        .dropdown-content li {
+            padding: 8px 0;
+            cursor: pointer;
+        }
+
+        .dropdown-content li:hover {
+            color: #ff7a00;
+        }
+
+        .dropdown input:checked~.dropdown-content {
+            display: block;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            width: 100%;
+            height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: absolute;
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 30px;
+            background-color: #ff7a00;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .hero-content button:hover {
+            background-color: #e96d00;
+        }
+
+        /* ===== BESTSELLERS SECTION ===== */
+        .bestsellers {
+            padding: 50px 80px;
+            font-family: "Poppins", sans-serif;
+            background-color: #fff;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+
+        .section-header a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            border-bottom: 2px solid #000;
+            transition: color 0.3s ease;
+        }
+
+        .section-header a:hover {
+            color: #ff7a00;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #eee;
+        }
+
+        .tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #f1f1f1;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #333;
+        }
+
+        del {
+            color: gray;
+            margin-right: 5px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .bestsellers {
+                padding: 40px 40px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .bestsellers {
+                padding: 30px 20px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-header a {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .product-card h3 {
+                font-size: 14px;
+            }
+
+            .product-card p {
+                font-size: 13px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .explore-section {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .explore-box {
+            position: relative;
+            flex: 1 1 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .explore-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .explore-content {
+            position: absolute;
+            bottom: 70px;
+            left: 70px;
+            z-index: 2;
+        }
+
+        .explore-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .explore-content button {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .explore-content button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        /* Right side text color black */
+        .explore-box.right .explore-content h2 {
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .explore-section {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .explore-box {
+                flex: 1 1 100%;
+                height: 70vh;
+            }
+
+            .explore-content {
+                bottom: 40px;
+                left: 30px;
+            }
+
+            .explore-content h2 {
+                font-size: 2rem;
+            }
+
+            .explore-content button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+        }
+
+        .featured {
+            padding: 60px 20px;
+            background-color: white;
+           
+        }
+
+        .featured h3 {
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #000;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .featured h1 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #000;
+            display: flex;
+            justify-content: center;
+        }
+
+        .featured p {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 40px;
+            justify-content: center;
+                display: flex;
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 20px 40px;
+        }
+
+        .logos img {
+            width: 120px;
+        }
+
+        .logos img:hover {
+            transform: scale(1.05);
+
+        }
+
+        @media (max-width: 768px) {
+            .featured h1 {
+                font-size: 20px;
+            }
+
+            .logos {
+                gap: 20px;
+            }
+
+            .logos img {
+                width: 80px;
+            }
+        }
+        body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #fafafa;
+  color: #000;
+}
+
+.innovation-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 80px 10%;
+  background: linear-gradient(180deg, #fafafa 0%, #f8f8e8 100%);
+}
+
+.content {
+  flex: 1 1 55%;
+  min-width: 300px;
+}
+
+.content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 40px;
+}
+
+.lab-info h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.lab-info p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 10px 0 25px;
+  max-width: 90%;
+}
+
+.lab-info button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.lab-info button:hover {
+  background-color: #333;
+}
+
+.awards {
+  flex: 1 1 35%;
+  min-width: 250px;
+  text-align: left;
+}
+
+.awards h4 {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logos img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .innovation-section {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 60px 6%;
+  }
+
+  .content h1 {
+    font-size: 2rem;
+  }
+
+  .logos {
+    justify-content: flex-start;
+  }
+}
+.video-container {
+  width: 100%;
+  margin-top: 60px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+.footer {
+  background-color: #0a0a0a;
+  padding: 80px 10%;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer h2,
+.footer h4 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.footer-about {
+  flex: 1 1 300px;
+  max-width: 350px;
+}
+
+.footer-about p {
+  line-height: 1.7;
+  color: #ccc;
+}
+
+.footer-about a {
+  color: #ff4444;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-about a:hover {
+  text-decoration: underline;
+}
+
+/* Quick Links */
+.footer-links {
+  flex: 1 1 200px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* Contact */
+.footer-contact {
+  flex: 1 1 250px;
+  color: #ccc;
+}
+
+.footer-contact p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Community */
+.footer-community {
+  flex: 1 1 150px;
+}
+
+.footer-community ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-community li {
+  margin-bottom: 10px;
+}
+
+.footer-community a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.footer-community a:hover {
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+  }
+}
+.video-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 50px 60px;
+  box-sizing: border-box;
+}
+
+/* Video styling */
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .video-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .video-gallery {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
+.community-section {
+  text-align: center;
+  margin: 80px 0;
+}
+
+.community-section h1 {
+  font-size: 60px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-family: 'Arial Black', sans-serif;
+  color: #000;
+}
+
+.community-section .insta-link {
+  font-size: 14px;
+  color: #000;
+  text-decoration: underline;
+  letter-spacing: 1px;
+  font-family: Arial, sans-serif;
+  transition: color 0.3s ease;
+}
+
+.community-section .insta-link:hover {
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .community-section h1 {
+    font-size: 36px;
+  }
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">aretto</div>
+
+            <ul class="nav-links">
+                <li><a href="#">SHOP ▾</a></li>
+                <li><a href="#">SIZING ▾</a></li>
+
+                <li class="dropdown">
+                    <input type="checkbox" id="menu-toggle" />
+                    <label for="menu-toggle">WHY ARETTO ▾</label>
+                    <ul class="dropdown-content">
+                        <li><a href="technology.html">Technology</a></li>
+                        <li><a href="ourstory.html">Our Story</a> </li>
+                        <li>Partner with Us</li>
+                        <li>Community</li>
+                    </ul>
+                </li>
+
+                <li><a href="#">RETURN & EXCHANGE ▾</a></li>
+                <li><a href="#">FIND A STORE</a></li>
+                <li><a href="#">CONTACT US</a></li>
+            </ul>
+
+            <div class="icons">
+                <span>🔍</span>
+                <span>👤</span>
+                <span>🛒</span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="sub-bar">⚡ Express Delivery ⚡</div>
+
+    <section class="hero">
+        <img src="https://wearetto.com/cdn/shop/files/Home_-_Web_Banners-01.jpg?v=1755881941&width=1600"
+            alt="Hero Image" />
+        <div class="hero-content">
+            <h1 style="color: black;">Discover the Comfort <br />Support Every Step</h1>
+            <p style="color: black;">Step into the world of Aretto – where every step matters.</p>
+            <button>Shop Now</button>
+        </div>
+    </section>
+
+    <section class="bestsellers">
+        <div class="section-header">
+            <h2>BESTSELLERS</h2>
+            <a href="#">VIEW ALL</a>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <span class="tag">On sale</span>
+                <img src="https://wearetto.com/cdn/shop/files/Aretto_S3R_0387.jpg?v=1753686687&width=400"
+                    alt="Product 1" />
+                <h3>ARETTO LEAPS KIDS SHOES</h3>
+                <p><del>₹2,899</del> <strong>₹2,464</strong></p>
+            </div>
+
+            <div class="product-card">
+                <span class="tag">On sale</span>
+                <img src="https://wearetto.com/cdn/shop/files/Aretto_S3R_0356_781ef0a8-712d-4b32-a613-bf4cbeeabb07.jpg?v=1753686873&width=400"
+                    alt="Product 2" />
+                <h3>ARETTO KIDS SHOES</h3>
+                <p><del>₹2,899</del> <strong>₹2,464</strong></p>
+            </div>
+
+            <div class="product-card">
+                <span class="tag">On sale</span>
+                <img src="https://wearetto.com/cdn/shop/files/TynyS0-Amazon1500x1500-15.jpg?v=1747733335&width=400"
+                    alt="Product 3" />
+                <h3>ARETTO BABY PINK SHOES</h3>
+                <p><del>₹2,899</del> <strong>₹2,464</strong></p>
+            </div>
+
+            <div class="product-card">
+                <span class="tag">On sale</span>
+                <img src="https://wearetto.com/cdn/shop/files/TynyS0-Amazon1500x1500-09.jpg?v=1747733398&width=400"
+                    alt="Product 4" />
+                <h3>ARETTO BABY RED SHOES</h3>
+                <p><del>₹3,199</del> <strong>₹2,899</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="explore-section">
+        <div class="explore-box left">
+            <img src="https://wearetto.com/cdn/shop/files/Home_-_Mob_Banners-15.jpg?v=1755885493"
+                alt="Explore Colourways">
+            <div class="explore-content">
+                <h2>Explore<br>Colourways</h2>
+                <button>Shop Kids</button>
+            </div>
+        </div>
+
+        <div class="explore-box right">
+            <img src="https://wearetto.com/cdn/shop/files/Home_-_Mob_Banners-16.jpg?v=1755885363"
+                alt="Explore The Lastest">
+            <div class="explore-content">
+                <h2>Explore<br>The Lastest</h2>
+                <button>Shop New Borns</button>
+            </div>
+        </div>
+    </section>
+    <section class="featured">
+        <h3>FEATURED IN,</h3>
+        <h1>“ARETTO REVOLUTIONIZES KIDS FOOTWEAR WITH COMFORT”</h1>
+        <p>~ Financial Express</p>
+
+        <div class="logos">
+            <img src="https://wearetto.com/cdn/shop/files/NewsLogos-Adjusted-19.png?v=1761771962&width=120" alt="Inc42">
+            <img src="https://wearetto.com/cdn/shop/files/NewsLogos-Adjusted-15.png?v=1761771962&width=120"
+                alt="The Times of India">
+            <img src="https://wearetto.com/cdn/shop/files/NewsLogos-Adjusted-20.png?v=1761771962&width=120" alt="CNBC">
+            <img src="https://wearetto.com/cdn/shop/files/NewsLogos-Adjusted-18.png?v=1761771962&width=120"
+                alt="ET Now">
+            <img src="https://wearetto.com/cdn/shop/files/NewsLogos-Adjusted-12.png?v=1761771962&width=120"
+                alt="Financial Express">
+            <img src="https://wearetto.com/cdn/shop/files/NewsLogos-Adjusted-11.png?v=1761771962&width=120"
+                alt="Headlines Today">
+            <img src="https://wearetto.com/cdn/shop/files/NewsLogos-Adjusted-16.png?v=1761771962&width=120"
+                alt="YourStory">
+            <img src="https://wearetto.com/cdn/shop/files/NewsLogos-Adjusted-17.png?v=1761771962&width=120"
+                alt="Zee Business">
+            <img src="https://wearetto.com/cdn/shop/files/NewsLogos-Adjusted-13.png?v=1761771961&width=120"
+                alt="Times Now">
+        </div>
+    </section>
+    <section class="innovation-section">
+    <div class="content">
+      <h1>
+        A MIX OF SCIENCE, STYLE, AND <br>
+        SHEER STUBBORNNESS GOT <br>
+        US HERE.
+      </h1>
+
+      <div class="lab-info">
+        <h3>ARETTO’S INNOVATION LAB</h3>
+        <p>
+          Our design philosophy merges form and function in perfect union, 
+          creating footwear that's both technically advanced and aesthetically appealing.
+        </p>
+        <button>OUR TECHNOLOGY</button>
+      </div>
+    </div>
+
+    <div class="awards">
+      <h4>RECOGNITIONS & PATENTS</h4>
+      <div class="logos">
+        <img src="https://wearetto.com/cdn/shop/files/Asset_1_large.png?v=1761227557" alt="Award Logo 1">
+        <img src="https://wearetto.com/cdn/shop/files/Aretto_Awards_BW_1_-03_large.png?v=1761223726" alt="Award Logo 2">
+        <img src="https://wearetto.com/cdn/shop/files/Aretto_Awards_BW_1_-01_large.png?v=1761223726" alt="Award Logo 3">
+        <img src="https://wearetto.com/cdn/shop/files/Aretto_Awards_BW_1_-02_large.png?v=1761223726" alt="Award Logo 4">
+      </div>
+    </div>
+    
+  <div class="video-container">
+      <video autoplay muted loop playsinline>
+        <source src="https://cdn.shopify.com/videos/c/o/v/6cd8d23202ac4751b17c0892bb76041c.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <section class="community-section">
+  <h1>COMMUNITY STORIES</h1>
+  <a href="#" class="insta-link">VISIT INSTAGRAM</a>
+</section>
+  </section>
+     <section class="video-gallery">
+    <div class="video-container">
+      <video src="https://cdn.shopify.com/videos/c/o/v/26a4508a887a4eaf91a597336cd9892d.mov" autoplay muted loop></video>
+    </div>
+    <div class="video-container">
+      <video src="https://cdn.shopify.com/videos/c/o/v/5134d7bfc7c74ec086e4242b18f26b93.mp4" autoplay muted loop></video>
+    </div>
+    <div class="video-container">
+      <video src="https://cdn.shopify.com/videos/c/o/v/e2f6e94a2b024250a071d14953d7b40d.mp4" autoplay muted loop></video>
+    </div>
+    <div class="video-container">
+      <video src="https://cdn.shopify.com/videos/c/o/v/333451f1037e4fdab11cafaac404789c.mp4" autoplay muted loop></video>
+    </div>
+  </section>
+   <footer class="footer">
+    <div class="footer-container">
+
+      <!-- About Section -->
+      <div class="footer-about">
+        <h2>ABOUT ARETTO</h2>
+        <p>
+          With imagination, skill, and science we are crafting naturally caring shoes for your kid,
+          that grow as your kids' feet grow.
+        </p>
+
+        <h4>PARTNER WITH US</h4>
+        <p>
+          <span>Link to fill the form - </span>
+          <a href="#">Click Here</a>
+        </p>
+        <p>Official Email – partner@wearetto.com</p>
+      </div>
+
+      <!-- Quicklinks -->
+      <div class="footer-links">
+        <h4>QUICKLINKS</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Submit a Return / Exchange request</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Offline Store – Terms & Conditions</a></li>
+          <li><a href="#">Shipping, Exchange & Refund Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Collaborate with Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-contact">
+        <h4>CONTACT US</h4>
+        <p>Email – support@wearetto.com</p>
+        <p>Contact – +91-9309192340</p>
+        <p>CIN Number – U19119PN2020PTC190137</p>
+        <p>
+          Upper Ground Floor, Clover Hill Plaza, UG-21, NIBM Rd, Kondhwa, Pune, Maharashtra 411048
+        </p>
+      </div>
+
+      <!-- Community -->
+      <div class="footer-community">
+        <h4>COMMUNITY</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+
+
+
+</body>
+
+</html>
